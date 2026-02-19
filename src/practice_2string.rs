@@ -52,4 +52,13 @@ fn format() {
     print!("split_str:{:.3}.", "hi,iam");
     print!("pointer:{:p}.", "hi,iam");
     println!("specail:{{.");
+    println!("hi,{0:.2},{0}","linson");
+}
+
+mod tests{
+
+    #[test]
+    fn test() {
+        crate::practice_2string::format();
+    }
 }
