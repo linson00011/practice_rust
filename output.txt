@@ -1,0 +1,2 @@
+{[Config { _query: "who", filename: "practice_8poem.txt", case_sensitive: false }]}
+{["I'm nobody! Who are you?\nAre you nobody, too?\nThen there's a pair of us - don't tell!\nThey'd banish us, you know.\n\nHow dreary to be somebody!\nHow public, like a frog\nTo tell your name the livelong day\nTo an admiring bog!", ["i'm nobody! who are you?"]]}
