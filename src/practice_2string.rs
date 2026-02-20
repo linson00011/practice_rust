@@ -61,6 +61,8 @@ fn format_sample() {
     print!("pointer:{:p}.", "hi,iam");
     println!("specail:{{.");
     println!("hi,{0:.2},{0}","linson");
+    println!("or{},and{},xor{}",0b1|0b0,0b1&0b0,0b1^0b0);
+
 }
 
 mod tests{
@@ -68,5 +70,6 @@ mod tests{
     #[test]
     fn test() {
         crate::practice_2string::str_practice();
+        crate::practice_2string::format_sample();
     }
 }

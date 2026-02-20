@@ -34,3 +34,9 @@ fn main() {
 
 }
 
+mod test{
+    #[test]
+    fn test_one() {
+        crate::practice_3array::array_practice();
+    }
+}
