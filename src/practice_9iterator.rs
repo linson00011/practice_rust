@@ -13,6 +13,8 @@ pub fn practice_iterator_fns() {
     //    3.3 sum,fold, collect,  they can output summary or collection.
     //    3.4 into_iter, need mofiy no copytype, eg:  ...into_iter(); ...map(|mut x|{...;x})
 
+    //todo .flatten() flat. need to add an exsample.
+
     let data_string = "hi,i am linson.".to_string();
     let iter_string = practice_iterater_convert_string(&data_string);
     
@@ -47,6 +49,9 @@ pub fn practice_iterator_fns() {
     let iter_vec_string=data_vec_string.into_iter();//note:need into.string is not a copy type.
     let tempstring:Vec<String>= iter_vec_string.map(|mut x|{x.push_str("!");x}).collect();
     printlns_simple!(tempstring);
+
+    result_with_list();
+    list_of_results();
 }
 
 
@@ -61,4 +66,52 @@ fn practice_iterater_convert_vec(data: &Vec<i32>) -> impl Iterator<Item = &i32> 
 
 fn practice_iterater_convert_vec2(data: &Vec<Option<f32>>) -> impl Iterator<Item = &Option<f32>> {
     data.iter()
+}
+
+
+#[derive(Debug, PartialEq, Eq)]
+enum DivisionError {
+    // Example: 42 / 0
+    DivideByZero,
+    // Only case for `i64`: `i64::MIN / -1` because the result is `i64::MAX + 1`
+    IntegerOverflow,
+    // Example: 5 / 2 = 2.5
+    NotDivisible,
+}
+
+// TODO: Calculate `a` divided by `b` if `a` is evenly divisible by `b`.
+// Otherwise, return a suitable error.
+fn divide(a: i64, b: i64) -> Result<i64, DivisionError> {
+    if b==0{
+        Err(DivisionError::DivideByZero)
+    }
+    else if a==i64::MIN && b==-1 {
+        Err(DivisionError::IntegerOverflow)
+    }
+    else if a %b!=0 {
+        Err(DivisionError::NotDivisible)
+    }
+    else {
+        Ok(a/b)
+    }
+}
+
+// TODO: Add the correct return type and complete the function body.
+// Desired output: `Ok([1, 11, 1426, 3])`
+fn result_with_list()->Result<[i64;4],DivisionError> {
+   let numbers = [27, 297, 38502, 81];
+   numbers.into_iter().for_each(|mut n| {n= divide(n, 27).unwrap();});
+   Ok(numbers)
+}
+
+// TODO: Add the correct return type and complete the function body.
+// Desired output: `[Ok(1), Ok(11), Ok(1426), Ok(3)]`
+fn list_of_results() ->[Result<i64,DivisionError>;4]{
+    let numbers = [27, 297, 38502, 81];
+    [
+        divide(numbers[0], 27),
+        divide(numbers[1], 27),
+        divide(numbers[2], 27),
+        divide(numbers[3], 27),
+    ]
 }
