@@ -11,7 +11,7 @@ pub fn practice_app_search_file_main() {
     let res = practice_rust::run(&config);
 
     if let Err(e) = res {
-        eprintln!("{:?}",e);
+        eprintln!("{:?}", e);
         process::exit(1);
     }
 }

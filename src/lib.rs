@@ -3,27 +3,26 @@ use anyhow::Result;
 use std::{env, fs};
 mod utils;
 
-
 #[derive(Debug)]
 pub struct Config {
     _query: String,
     filename: String,
-    case_sensitive:bool,
+    case_sensitive: bool,
 }
 
 impl Config {
     fn new(_query: &str, filename: &str) -> Config {
         //todo: replace clone.
-        let case_sensitive=env::var("CASE").unwrap_or_else(|_e|"1".to_string());
-        let mut b_case=true;//default value is true. it is sensitive.
-        if case_sensitive=="0"{
-            b_case=false;
+        let case_sensitive = env::var("CASE").unwrap_or_else(|_e| "1".to_string());
+        let mut b_case = true; //default value is true. it is sensitive.
+        if case_sensitive == "0" {
+            b_case = false;
         }
 
         Config {
             _query: _query.to_string(),
             filename: filename.to_string(),
-            case_sensitive:b_case,
+            case_sensitive: b_case,
         }
     }
 }
@@ -38,24 +37,20 @@ pub fn get_program_args() -> Result<Config> {
 }
 
 pub fn run(config: &Config) -> Result<()> {
-
-
     let contents = fs::read_to_string(&config.filename)?;
-    let result_filter=search_case_sensitive(&contents, &config._query,config.case_sensitive);
-    printlns_simple!(contents,result_filter);
+    let result_filter = search_case_sensitive(&contents, &config._query, config.case_sensitive);
+    printlns_simple!(contents, result_filter);
 
-    
     Ok(())
 }
 
-pub fn search_case_sensitive(contents: &str, query: &str,case_sensitive:bool) -> Vec<String> {
+pub fn search_case_sensitive(contents: &str, query: &str, case_sensitive: bool) -> Vec<String> {
     //1.sensitive->search 2.insentive-> lowercase->seach.
-    if case_sensitive{
+    if case_sensitive {
         search(contents, query)
-    }
-    else {
-        let contents_lowercase=contents.to_lowercase();
-        let query_lowercase=query.to_lowercase();
+    } else {
+        let contents_lowercase = contents.to_lowercase();
+        let query_lowercase = query.to_lowercase();
         search(&contents_lowercase, &query_lowercase)
     }
 }
@@ -101,36 +96,45 @@ mod tests {
         let conents = "";
         assert_eq!(crate::search(conents, query), Vec::<String>::new());
     }
-#[test]
+    #[test]
     fn one_result_case_sensitive() {
         let query = "Duct";
         let conents = "Rust:safe,\nfast, productive.\nPick three.";
 
         assert_eq!(
-            crate::search_case_sensitive(conents, query,false),
+            crate::search_case_sensitive(conents, query, false),
             vec!["fast, productive.".to_string()]
         );
 
         assert_eq!(
-            crate::search_case_sensitive(conents, query,true),
+            crate::search_case_sensitive(conents, query, true),
             Vec::<String>::new()
         );
 
         let query = "ducta";
-        assert_eq!(crate::search_case_sensitive(conents, query,false), Vec::<String>::new());
+        assert_eq!(
+            crate::search_case_sensitive(conents, query, false),
+            Vec::<String>::new()
+        );
 
         let query = "";
-        assert_eq!(crate::search_case_sensitive(conents, query,false), Vec::<String>::new());
+        assert_eq!(
+            crate::search_case_sensitive(conents, query, false),
+            Vec::<String>::new()
+        );
 
         let query = "duct";
         let conents = "";
-        assert_eq!(crate::search_case_sensitive(conents, query,false), Vec::<String>::new());
+        assert_eq!(
+            crate::search_case_sensitive(conents, query, false),
+            Vec::<String>::new()
+        );
 
         let query = "";
         let conents = "";
-        assert_eq!(crate::search_case_sensitive(conents, query,false), Vec::<String>::new());
+        assert_eq!(
+            crate::search_case_sensitive(conents, query, false),
+            Vec::<String>::new()
+        );
     }
-
-
-
 }

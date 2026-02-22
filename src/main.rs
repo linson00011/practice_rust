@@ -13,6 +13,7 @@ mod practice_5fn;
 mod practice_6struct;
 mod practice_7generic;
 mod practice_8app_search_file;
+mod practice_9iterator;
 
 fn main() {
     let test_all = false;
@@ -27,14 +28,13 @@ fn main() {
         practice_5fn::practice_call_fns();
         practice_struct_fns();
         practice_7generic::practice_generic_fns();
+        practice_8app_search_file::practice_app_search_file_main();
     }
 
-    practice_8app_search_file::practice_app_search_file_main();
-
-
+    practice_9iterator::practice_iterator_fns();
 }
 
-mod test{
+mod test {
     #[test]
     fn test_one() {
         crate::practice_3array::array_practice();

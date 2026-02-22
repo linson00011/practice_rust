@@ -1,5 +1,3 @@
-
-
 #[macro_export]
 macro_rules! printlns_simple {
     // 核心修复1：匹配「0个/多个参数」（含末尾逗号），统一处理为切片

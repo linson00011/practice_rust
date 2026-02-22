@@ -38,19 +38,19 @@ pub fn practice_generic_fns() {
 
 /*#region lifetime */
 fn test_lifetime() {
-        let mut s1="apple".to_string();
-        let s2="orange".to_string();
+    let mut s1 = "apple".to_string();
+    let s2 = "orange".to_string();
 
-        let aa=test_ref_fn(&s1, &s2);
+    let aa = test_ref_fn(&s1, &s2);
 
-        let aa_1=aa.to_string();
-        s1.push('a');
-        println!("aaaaaaaaaaaaaaaaaaaaaaa{}",aa_1);
-    }
+    let aa_1 = aa.to_string();
+    s1.push('a');
+    println!("aaaaaaaaaaaaaaaaaaaaaaa{}", aa_1);
+}
 
-    fn test_ref_fn<'a>(s1:&'a str,_s2:&str)->&'a str{
-        s1
-    }
+fn test_ref_fn<'a>(s1: &'a str, _s2: &str) -> &'a str {
+    s1
+}
 /*#endregion */
 /* #region trait */
 fn practice7_generic_trait() {

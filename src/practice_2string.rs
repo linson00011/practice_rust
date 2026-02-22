@@ -1,4 +1,3 @@
-
 pub fn str_practice() {
     let res = str_practice_join();
     println!("{res}");
@@ -15,14 +14,17 @@ pub fn str_practice() {
     let res = str_practice_rev("hi, i am an apple.");
     println!("{res}");
 
-    let res = str_practice_format_color((128,255,90));
+    let res = str_practice_format_color((128, 255, 90));
     println!("{res}");
 
     format_sample();
 }
 
-fn str_practice_format_color(color:(u8,u8,u8))->String{
-    format!("ox{:x}",color.2 as u32+color.1 as u32*256+color.0 as u32*256*256)
+fn str_practice_format_color(color: (u8, u8, u8)) -> String {
+    format!(
+        "ox{:x}",
+        color.2 as u32 + color.1 as u32 * 256 + color.0 as u32 * 256 * 256
+    )
 }
 
 fn str_practice_join() -> String {
@@ -60,12 +62,11 @@ fn format_sample() {
     print!("split_str:{:.3}.", "hi,iam");
     print!("pointer:{:p}.", "hi,iam");
     println!("specail:{{.");
-    println!("hi,{0:.2},{0}","linson");
-    println!("or{},and{},xor{}",0b1|0b0,0b1&0b0,0b1^0b0);
-
+    println!("hi,{0:.2},{0}", "linson");
+    println!("or{},and{},xor{}", 0b1 | 0b0, 0b1 & 0b0, 0b1 ^ 0b0);
 }
 
-mod tests{
+mod tests {
 
     #[test]
     fn test() {

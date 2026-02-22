@@ -3,7 +3,7 @@ pub fn array_practice() {
     let ret = array_practice_int_array([1, 2, 3, 4, 5]);
     println!("int array:{:?}", ret);
 
-    let ret = array_practice_int_array2([6;5]);
+    let ret = array_practice_int_array2([6; 5]);
     println!("int array2:{:?}", ret);
 
     let vec_num = vec![1, 2, 3, 4, 5];
