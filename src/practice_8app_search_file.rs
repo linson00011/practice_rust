@@ -1,8 +1,8 @@
 use practice_rust::printlns_simple;
-use std::process;
+use std::{env, process};
 
 pub fn practice_app_search_file_main() {
-    let config = practice_rust::get_program_args().unwrap_or_else(|e| {
+    let config = practice_rust::Config::new(env::args()).unwrap_or_else(|e| {
         eprintln!("{:?}", e);
         process::exit(1);
     });

@@ -11,30 +11,51 @@ pub struct Config {
 }
 
 impl Config {
-    fn new(_query: &str, filename: &str) -> Config {
-        //todo: replace clone.
-        let case_sensitive = env::var("CASE").unwrap_or_else(|_e| "1".to_string());
+  pub  fn new(mut args:std::env::Args) -> Result<Config,String> {
+
+        let mut query:String=String::new();
+        let mut filename:String=String::new();
         let mut b_case = true; //default value is true. it is sensitive.
+        let mut error_string:String=String::new();
+
+        match args.next() {
+            Some(arg)=>{
+                query=arg;
+            },
+            None=>{
+                error_string.push_str("Didn't get a query string.");
+            }
+        };
+
+        match args.next() {
+            Some(arg)=>{
+                filename=arg;
+            },
+            None=>{
+                error_string.push_str("Didn't get a file string.");
+            }
+        };
+
+        let case_sensitive = env::var("CASE").unwrap_or_else(|_e| "1".to_string());
         if case_sensitive == "0" {
             b_case = false;
         }
 
-        Config {
-            _query: _query.to_string(),
-            filename: filename.to_string(),
-            case_sensitive: b_case,
+        if !query.is_empty() && !filename.is_empty(){
+            Ok(
+                Config {
+                _query: query.to_string(),
+                filename: filename.to_string(),
+                case_sensitive: b_case,
+                }
+            )
+        }
+        else {
+            Err(error_string)
         }
     }
 }
 
-pub fn get_program_args() -> Result<Config> {
-    let the_args = env::args().collect::<Vec<String>>();
-    if the_args.len() >= 3 {
-        Ok(Config::new(&the_args[1], &the_args[2]))
-    } else {
-        Err(anyhow::Error::msg("not enough parameter"))
-    }
-}
 
 pub fn run(config: &Config) -> Result<()> {
     let contents = fs::read_to_string(&config.filename)?;

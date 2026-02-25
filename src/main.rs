@@ -29,9 +29,10 @@ fn main() {
         practice_struct_fns();
         practice_7generic::practice_generic_fns();
         practice_8app_search_file::practice_app_search_file_main();
+        practice_9iterator::practice_iterator_fns();
     }
 
-    practice_9iterator::practice_iterator_fns();
+   practice_8app_search_file::practice_app_search_file_main();
 }
 
 mod test {
