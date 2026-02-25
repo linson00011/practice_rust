@@ -14,6 +14,7 @@ pub fn practice_iterator_fns() {
     //    3.4 into_iter, need mofiy no copytype, eg:  ...into_iter(); ...map(|mut x|{...;x})
 
     //todo .flatten() flat. need to add an exsample.
+    //dna.chars().enumerate().for_each(|(x,y)|{if error_index==-1 &&  !dna_code.contains(&y) {error_index=x as i32}   });
 
     let data_string = "hi,i am linson.".to_string();
     let iter_string = practice_iterater_convert_string(&data_string);
@@ -21,8 +22,6 @@ pub fn practice_iterator_fns() {
 
     let data_vec = vec![1, 2, 3, 4, 5, 6, 0];
     let iter_vec = practice_iterater_convert_vec(&data_vec);
-
-    
 
 
     let data_vec_enum = vec![Some(1.2), Some(2.3), None, Some(5.4)];
@@ -52,6 +51,11 @@ pub fn practice_iterator_fns() {
 
     result_with_list();
     list_of_results();
+}
+
+fn practice_iterater_inspect()
+{
+
 }
 
 
