@@ -15,6 +15,7 @@ mod practice_6struct;
 mod practice_7generic;
 mod practice_8app_search_file;
 mod practice_9iterator;
+mod practice_6enum;
 
 fn main() {
     let test_all = false;
@@ -33,7 +34,11 @@ fn main() {
         practice_9iterator::practice_iterator_fns();
         practice_10life_owership::practice_10owership_fns();
     }
-    num_practice();
+
+    practice_6enum::practice_enum();
+
+    //practice_10life_owership::practice_10owership_fns();
+    //num_practice();
 
     //    practice_8app_search_file::practice_app_search_file_main();
     //practice_10life_owership::practice_10owership_fns();
