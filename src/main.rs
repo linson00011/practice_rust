@@ -5,6 +5,7 @@ use crate::{
 use practice_1number::num_practice;
 
 mod exercism;
+mod practice_10life_owership;
 mod practice_1number;
 mod practice_2string;
 mod practice_3array;
@@ -30,9 +31,12 @@ fn main() {
         practice_7generic::practice_generic_fns();
         practice_8app_search_file::practice_app_search_file_main();
         practice_9iterator::practice_iterator_fns();
+        practice_10life_owership::practice_10owership_fns();
     }
+    num_practice();
 
-   practice_8app_search_file::practice_app_search_file_main();
+    //    practice_8app_search_file::practice_app_search_file_main();
+    //practice_10life_owership::practice_10owership_fns();
 }
 
 mod test {

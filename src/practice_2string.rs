@@ -1,4 +1,5 @@
 pub fn str_practice() {
+    //1.mut for vairable 2.&mut is date type 3.&'a mut is data type with life flag.
     let res = str_practice_join();
     println!("{res}");
 
